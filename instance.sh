@@ -22,9 +22,10 @@ else
             --instance-type "$INSTANCE_TYPE" \
             --security-group-ids "$SG_ID" \
             --query 'Instances[0].PrivateIpAddress' \
+            --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER_NAME}]" \
             --output text)
 
-        aws ec2 create-tags --resources "$PRIVATE_IP" --tags "Key=Name,Value=$SERVER_NAME"
+        #aws ec2 create-tags --resources "$PRIVATE_IP" --tags "Key=Name,Value=$SERVER_NAME"
 
         echo "Instance $SERVER_NAME has been created with Private IP: $PRIVATE_IP"
 
