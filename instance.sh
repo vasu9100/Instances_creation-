@@ -1,9 +1,13 @@
+#!/bin/bash
+
+set -x
+
 AMI_ID="ami-03265a0778a880afb"
 SG_ID="sg-0eab7d3878626d44d"
 SERVER_NAMES=("web" "catalogue" "cart" "user" "shipping" "payment" "mysql" "rabbitmq" "redis" "dispatch" "mongodb")
 HOSTED_ZONE_ID="Z08382393NBPVIFQUJM1I"
 
-if [ -n "$SERVER_NAMES" ]; then
+if [ -n "$SERVER_NAME" ]; then
     echo "Instances already exist. No need to create."
 else
     for SERVER_NAME in "${SERVER_NAMES[@]}"; do
