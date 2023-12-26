@@ -7,7 +7,12 @@ SG_ID="sg-0eab7d3878626d44d"
 SERVER_NAMES=("web" "catalogue" "cart" "user" "shipping" "payment" "mysql" "rabbitmq" "redis" "dispatch" "mongodb")
 HOSTED_ZONE_ID="Z08382393NBPVIFQUJM1I"
 
-if [ -n "$SERVER_NAME" ]; then
+existing_instances=$(aws ec2 describe-instances \
+  --filters "Name=tag:Name,Values=${SERVER_NAMES[*]}" \
+  --query 'Reservations[*].Instances[*].[PrivateIpAddress]' \
+  --output text)
+
+if [ -n "$existing_instances" ]; then
     echo "Instances already exist. No need to create."
 else
     for SERVER_NAME in "${SERVER_NAMES[@]}"; do
@@ -24,8 +29,6 @@ else
             --query 'Instances[0].PrivateIpAddress' \
             --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER_NAME}]" \
             --output text)
-
-        #aws ec2 create-tags --resources "$PRIVATE_IP" --tags "Key=Name,Value=$SERVER_NAME"
 
         echo "Instance $SERVER_NAME has been created with Private IP: $PRIVATE_IP"
 
