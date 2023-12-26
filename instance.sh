@@ -36,7 +36,7 @@ else
                 {
                   \"Action\": \"UPSERT\",
                   \"ResourceRecordSet\": {
-                    \"Name\": \"$SERVER_NAME.example.com\",
+                    \"Name\": \"$SERVER_NAME.gonepudirobot.online\",
                     \"Type\": \"A\",
                     \"TTL\": 300,
                     \"ResourceRecords\": [
