@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -x
 
 AMI_ID="ami-03265a0778a880afb"
 SG_ID="sg-0eab7d3878626d44d"
