@@ -37,4 +37,8 @@ else
     exit 1
 fi
 
+read -p "Enter password for $username :" password
+
+echo $password | passwd --stdin $username
+validate $? "password"
 
