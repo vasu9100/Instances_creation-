@@ -30,6 +30,7 @@ echo
 while [ -z $username ]; do
 
     echo "username should not be empty Please enter username"
+    break
 done    
 
 useradd $username
