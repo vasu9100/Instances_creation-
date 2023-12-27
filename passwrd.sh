@@ -2,50 +2,44 @@
 
 ID=$(id -u)
 
-if [ ${id} -ne 0 ]; then
-
+if [ ${ID} -ne 0 ]; then
     echo "Please switch to root user"
     exit 1
 else
-
-    echo "your are root user"
+    echo "You are a root user"
 fi
 
 validate() {
-
     if [ $1 -ne 0 ]; then
-
-        echo "$2 .....Creation falied"
+        echo "$2 .....Creation failed"
         exit 1
     else
-        echo "$2 ......Creation Success" 
+        echo "$2 ......Creation Success"
     fi
 }
 
 echo "Adding New User"
 
-read -p "username Please Enter :" username
-echo 
+read -p "Username, please enter: " username
+echo
 
-while [ -z $username ]; do
-
-    read -p "username should not be empty Please Enter :" username 
-    break
-done    
+while [ -z "$username" ]; do
+    read -p "Username should not be empty. Please enter: " username
+done
 
 useradd $username
-validate $? "user"
+validate $? "User"
 
+read -p -s "Enter password for $username: " password
+echo
 
-read -p "Enter password for $username :" password
+while [ -z "$password" ]; do
+    read -p "Password should not be empty. Please enter: " password
+done
 
-while [ -z $password ]; do
+echo "$password" | passwd --stdin $username
+validate $? "Password"
 
-    read -p -s "password should not be empty Please Enter :" password 
-    break
-    exit 1
-done    
+echo "User $username created with password."
 
-echo $password | passwd --stdin $username
-validate $? "password"
-
+# Rest of your script...
