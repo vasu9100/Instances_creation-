@@ -25,17 +25,15 @@ validate() {
 echo "Adding New User"
 
 read -p "Enter User Name :" username
-echo
+echo 
+
+while [ -z $username ]; do
+
+    echo "username should not be empty Please enter username"
+done    
 
 useradd $username
 
-if [ $? -eq 0 ]; then
-
-     echo "$usernam is new user and creation done"
-else
-    echo "$usrname is exited already"
-    exit 1
-fi
 
 read -p "Enter password for $username :" password
 
