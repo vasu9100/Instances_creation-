@@ -43,6 +43,7 @@ while [ -z $password ]; do
 
     read -p -s "password should not be empty Please Enter :" password 
     break
+    exit 1
 done    
 
 echo $password | passwd --stdin $username
