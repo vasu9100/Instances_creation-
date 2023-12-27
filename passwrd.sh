@@ -39,7 +39,7 @@ validate $? "user"
 
 read -p "Enter password for $username :" password
 
-while [ -z $username ]; do
+while [ -z $password ]; do
 
     read -p -s "password should not be empty Please Enter :" password 
     break
