@@ -34,6 +34,7 @@ while [ -z $username ]; do
 done    
 
 useradd $username
+validate "user"
 
 
 read -p "Enter password for $username :" password
