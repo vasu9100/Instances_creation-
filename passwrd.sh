@@ -24,12 +24,12 @@ validate() {
 
 echo "Adding New User"
 
-read -p "Enter User Name :" username
+read -p "username Please Enter :" username
 echo 
 
 while [ -z $username ]; do
 
-    echo "username should not be empty Please enter username"
+    read -p "username should not be empty Please Enter :" username 
     break
 done    
 
